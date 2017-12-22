@@ -5,18 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
-namespace YukiNET
+namespace YukiSCR
 {
-    class Printcher
+    public class Printcher
     {
-        public float charactersPerSecond;
+        public float wordsPerMinute;
         public string text;
 
         private float totalRuntime;
         private int lastIndex;
 
         public bool IsFinished { get { return lastIndex == text.Length; } }
-        public float SecondsBetweenLetters { get { return charactersPerSecond / 60.0f; } }
+        public float SecondsBetweenLetters { get { return wordsPerMinute / 60.0f; } }
 
         public string Advance(float deltaTime)
         {
@@ -35,27 +35,6 @@ namespace YukiNET
             lastIndex = Math.Min(lastIndex, text.Length);
 
             return text.Substring(startIndex, lastIndex - startIndex);
-        }
-    }
-
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Printcher test = new Printcher();
-            test.charactersPerSecond = 1.0f;
-            test.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nDonec interdum magna neque, vel porta lorem pellentesque fermentum.\nIn placerat volutpat nunc.";
-
-            DateTime startTime = DateTime.Now;
-            DateTime lastTime = startTime;
-            do
-            {
-                DateTime currentTime = DateTime.Now;
-                float deltaTime = (float)(currentTime - lastTime).TotalSeconds;
-                lastTime = currentTime;
-
-                Console.Write(test.Advance(deltaTime));
-            } while (true);
         }
     }
 }
