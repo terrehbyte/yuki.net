@@ -57,9 +57,6 @@ namespace YukiSCR
                 babyWindow.printcher.wordsPerMinute = 1.0f;
                 babyWindow.printcher.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nDonec interdum magna neque, vel porta lorem pellentesque fermentum.\nIn placerat volutpat nunc.";
 
-                babyWindow.BeginTicking();
-                babyWindow.Show();
-
                 var screenRect = new Rect(new System.Windows.Point(SystemInformation.VirtualScreen.Left, SystemInformation.VirtualScreen.Top),
                                           new System.Windows.Point(SystemInformation.VirtualScreen.Right, SystemInformation.VirtualScreen.Bottom));
 
@@ -67,6 +64,9 @@ namespace YukiSCR
                 babyWindow.WindowStartupLocation = WindowStartupLocation.Manual;
                 babyWindow.Left = rng.Next(0, SystemInformation.VirtualScreen.Right);
                 babyWindow.Top = rng.Next(0, SystemInformation.VirtualScreen.Bottom);
+
+                babyWindow.BeginTicking();
+                babyWindow.Show();
 
                 windows.Add(babyWindow);
                 nextWindowSpawnTime = totalTime + timeBetweenWindows;
