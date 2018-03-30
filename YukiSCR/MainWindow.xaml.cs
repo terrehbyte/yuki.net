@@ -14,7 +14,6 @@ namespace YukiSCR
         const int maxWindowCount = 20;
         const float timeBetweenWindows = 0.5f;
 
-
         List<FakeCmd> windows = new List<FakeCmd>();
         List<string> texts = new List<string>();
 
@@ -67,6 +66,8 @@ namespace YukiSCR
 
         private void BabyWindow_Closed(object sender, EventArgs e)
         {
+            ((FakeCmd)sender).Closed -= BabyWindow_Closed;
+
             try
             {
                 windows.Remove(sender as FakeCmd);

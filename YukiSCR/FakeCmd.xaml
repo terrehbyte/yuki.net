@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="Command Prompt" Height="300" Width="500">
     <Grid>
-        <TextBox Name="Contents" Foreground="White" Background="Black" FontFamily="Consolas"></TextBox>
+        <ScrollViewer Name="ScrollPane">
+            <TextBox Name="Contents" Foreground="White" Background="Black" FontFamily="Consolas"></TextBox>
+        </ScrollViewer>
     </Grid>
 </Window>
