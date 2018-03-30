@@ -9,14 +9,37 @@ namespace YukiSCR
 {
     public class Printcher
     {
-        public float wordsPerMinute;
+        public float charactersPerMinute;
         public string text;
 
         private float totalRuntime;
         private int lastIndex;
 
+        public float charactersPerSecond
+        {
+            get
+            {
+                return charactersPerMinute / 60.0f;
+            }
+            set
+            {
+                charactersPerMinute = value * 60.0f;
+            }
+        }
+        public float wordsPerMinute
+        {
+            get
+            {
+                return charactersPerMinute / 5.0f;
+            }
+            set
+            {
+                charactersPerMinute = value * 5.0f;
+            }
+        }
+
         public bool IsFinished { get { return lastIndex == text.Length; } }
-        public float SecondsBetweenLetters { get { return wordsPerMinute / 60.0f; } }
+        public float SecondsBetweenLetters { get { return 1 / charactersPerSecond; } }
 
         public string Advance(float deltaTime)
         {

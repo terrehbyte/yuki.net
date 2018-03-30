@@ -20,34 +20,24 @@ namespace YukiSCR
     public partial class FakeCmd : Window
     {
         public Printcher printcher;
-
-        DateTime startTime;
-        DateTime lastTime;
+        public int charactersPerUpdate = 1;
 
         public FakeCmd()
         {
             InitializeComponent();
-
-            startTime = DateTime.Now;
-            lastTime = startTime;
         }
 
         public void BeginTicking()
         {
             System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, (int)(Math.Floor(printcher.SecondsBetweenLetters * charactersPerUpdate * 1000)));
             dispatcherTimer.Start();
         } 
 
         private void Tick(object sender, EventArgs e)
         {
-            DateTime currentTime = DateTime.Now;
-            float deltaTime = (float)(currentTime - lastTime).TotalSeconds;
-            float totalTime = (float)(currentTime - startTime).TotalSeconds;
-            lastTime = currentTime;
-
-            Contents.Text += printcher.Advance(deltaTime);
+            Contents.Text += printcher.Advance(printcher.SecondsBetweenLetters * charactersPerUpdate);
 
             if(printcher.IsFinished)
             {
