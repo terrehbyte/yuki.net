@@ -49,14 +49,12 @@ namespace YukiSCR
 
             Random rng = new Random();
 
-            babyWindow.printcher = new Printcher();
-            babyWindow.printcher.charactersPerSecond = 200;
-            babyWindow.printcher.text = texts[rng.Next() % texts.Count];
+            babyWindow.printcher = new Printcher(texts[rng.Next() % texts.Count]);
+            babyWindow.printcher.charactersPerSecond = 120;
 
             var screenRect = new Rect(new System.Windows.Point(SystemInformation.VirtualScreen.Left, SystemInformation.VirtualScreen.Top),
                                       new System.Windows.Point(SystemInformation.VirtualScreen.Right, SystemInformation.VirtualScreen.Bottom));
 
-                
             babyWindow.WindowStartupLocation = WindowStartupLocation.Manual;
             babyWindow.Left = rng.Next(SystemInformation.VirtualScreen.Left, SystemInformation.VirtualScreen.Right);
             babyWindow.Top = rng.Next(SystemInformation.VirtualScreen.Top, SystemInformation.VirtualScreen.Bottom);
